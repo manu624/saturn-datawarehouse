@@ -1,16 +1,28 @@
 services:
   - type: web
-    name: saturn-backend
-    env: docker
-    plan: free
-    region: oregon
-    dockerfilePath: ./Dockerfile
-    buildCommand: ""
-    startCommand: ""
+    name: saturn-datawarehouse
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+    startCommand: gunicorn saturn_dw.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
-      - key: DJANGO_SECRET_KEY
-        value: your-secret-key
-      - key: DEBUG
-        value: false
       - key: DJANGO_SETTINGS_MODULE
         value: saturn_dw.settings.local
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: saturn-datawarehouse.onrender.com
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
