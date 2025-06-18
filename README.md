@@ -92,8 +92,6 @@ python manage.py runserver
 
 Visit: `http://localhost:8000/`
 
-> **Note:** The first time you load the site, it may take 10–20 seconds for the dashboard to appear. This delay is normal due to initial setup and cold start processes.
-
 ---
 
 ## 🧠 How Change History Is Tracked
@@ -149,4 +147,14 @@ To make evaluation easier, the following schemas have already been created on th
 This system demonstrates a production-inspired backend architecture that supports flexible data ingestion, validation, history tracking, and querying. It's extensible, testable, and scalable to real-world use cases with minor enhancements.
 
 ---
+
+### 🌐 Hosted Demo
+
+This project is deployed on Render for live testing and demonstration.
+
+🔗 **Live URL:** https://saturn-datawarehouse.onrender.com/
+
+> **Note:** The first time you load the site, it may take 30 - 40 seconds for the dashboard to appear. This delay is normal due to initial setup and cold start processes.
+
+You can access the full UI for schema definition, data ingestion, record search, and version tracking.
 
