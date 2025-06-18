@@ -134,6 +134,16 @@ Record ID: abc-123
 
 ---
 
+
+### ✅ Pre-Configured Example Schemas
+
+To make evaluation easier, the following schemas have already been created on the shared instance based on the example records provided in the assignment:
+
+- **Personal Details Schema**
+- **Address Details Schema**
+- **Income Details Schema**
+
+
 ## ✅ Conclusion
 
 This system demonstrates a production-inspired backend architecture that supports flexible data ingestion, validation, history tracking, and querying. It's extensible, testable, and scalable to real-world use cases with minor enhancements.
