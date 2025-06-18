@@ -47,21 +47,52 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Setup Database
+### 2. Install & Configure PostgreSQL
+
+- Install PostgreSQL on your local machine (see: https://www.postgresql.org/download/)
+- Create a new database and user for this project. For example:
+
+```bash
+sudo -u postgres psql
+CREATE DATABASE saturn_dw_db;
+CREATE USER saturn_dw_user WITH PASSWORD 'yourpassword';
+GRANT ALL PRIVILEGES ON DATABASE saturn_dw_db TO saturn_dw_user;
+\q
+```
+
+- Copy `.env.example` to `.env` and update the database credentials:
+
+```bash
+cp .env.example .env
+```
+
+- Edit `.env` to set your local PostgreSQL credentials:
+
+```
+DB_NAME=saturn_dw_db
+DB_USER=saturn_dw_user
+DB_PASSWORD=yourpassword
+DB_HOST=localhost
+DB_PORT=5432
+```
+
+### 3. Setup Database
 
 ```bash
 python manage.py migrate
 ```
 
-### 3. Run Server
+### 4. Run Server
 
 ```bash
 python manage.py runserver
 ```
 
-### 4. Access the Dashboard
+### 5. Access the Dashboard
 
 Visit: `http://localhost:8000/`
+
+> **Note:** The first time you load the site, it may take 10–20 seconds for the dashboard to appear. This delay is normal due to initial setup and cold start processes.
 
 ---
 

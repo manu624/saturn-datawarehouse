@@ -21,7 +21,9 @@ This user manual will guide you through how to use the system, from creating sch
 
 This system allows users to define schemas for structured data, ingest structured or unstructured records, and run queries or search across them. All records are versioned and changes are tracked historically.
 
-Navigate to: `http://localhost:8000/` to access the main dashboard.
+Navigate to: `https://saturn-datawarehouse.onrender.com/` to access the main dashboard.
+
+ **Note:** The first time you load the site, it may take 10–20 seconds for the dashboard to appear. This delay is normal due to initial setup and cold start processes.
 
 ---
 
@@ -71,28 +73,17 @@ Supported field types: `string`, `integer`, `float`, `boolean`
 ## 🧾 How to Ingest Unstructured Records
 
 1. Go to **"Ingest Unstructured Document"**.
-2. Paste the original `content` as JSON. Example:
+2. Paste the original `content` as JSON or Free Text. Example:
 ```json
 {
   "goal": "Save for a new house within 2 years",
   "notes": "Customer plans to invest in mutual funds."
 }
 ```
-3. Provide a flat `text` summary for full-text search. Example:
-```text
-Save for a new house within 2 years. Plans to invest in mutual funds.
-```
-4. Click submit to ingest the record.
+3. Click submit to ingest the record.
 
 ---
 
-## 📦 View and Manage Datasets
-
-1. Click **"View Datasets"** from the dashboard.
-2. See all available datasets and their linked schemas.
-3. You can also add a new dataset via the **"Create Dataset"** link.
-
----
 
 ## 🔍 Search Structured Records
 
@@ -119,8 +110,6 @@ Save for a new house within 2 years. Plans to invest in mutual funds.
 2. You’ll see all previous versions of that record, including timestamps.
 
 ---
-
-If you need to reset or clean data, you can do so via Django admin: `http://localhost:8000/admin/`
 
 For any technical setup or system design details, refer to the `README.md` file.
 
