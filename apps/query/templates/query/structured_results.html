@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Structured Data Filter</h2>
+
+<form method="get">
+  Field: <input name="field" value="{{ field }}">
+  Operator:
+  <select name="op">
+    <option value="exact" {% if op == "exact" %}selected{% endif %}>=</option>
+    <option value="gt" {% if op == "gt" %}selected{% endif %}>&gt;</option>
+    <option value="lt" {% if op == "lt" %}selected{% endif %}>&lt;</option>
+  </select>
+  Value: <input name="value" value="{{ value }}">
+  <button type="submit">Filter</button>
+</form>
+
+<hr>
+
+<ul>
+  {% for rec in records %}
+    <li>
+      <code>{{ rec.data }}</code>
+      [<a href="{% url 'query:record_history' rec.record_id %}">History</a>]
+    </li>
+  {% empty %}
+    <li>No results.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

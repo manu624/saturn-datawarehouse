@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Unstructured Documents</h2>
+
+<form method="get">
+  Keyword: <input name="q" value="{{ keyword }}">
+  <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<ul>
+  {% for doc in documents %}
+    <li>
+      <strong>Text:</strong> {{ doc.text }}<br>
+      <small>ID: {{ doc.doc_id }} | Version: {{ doc.version }}</small>
+    </li>
+  {% empty %}
+    <li>No matching documents.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

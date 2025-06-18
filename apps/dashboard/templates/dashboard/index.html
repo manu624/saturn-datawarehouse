@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Saturn Data Warehouse Dashboard</h2>
+
+<ul>
+  <li><a href="{% url 'schemas:create' %}">➕ Define New Schema</a></li>
+  <li><a href="{% url 'structured:ingest' %}">⬆️ Ingest Structured Record</a></li>
+  <li><a href="{% url 'unstructured:ingest' %}">📝 Ingest Unstructured Document</a></li>
+  <li><a href="{% url 'query:structured_search' %}">🔍 Query Structured Data</a></li>
+  <li><a href="{% url 'query:unstructured_search' %}">🧠 Search Unstructured Text</a></li>
+</ul>
+
+{% endblock %}
