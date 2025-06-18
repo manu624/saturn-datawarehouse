@@ -1,7 +1,29 @@
 import uuid
+import json
 from datetime import datetime
 from django.db import transaction
 from .models import UnstructuredDocument
+
+
+def flatten_json(obj):
+    if isinstance(obj, dict):
+        return " ".join(flatten_json(v) for v in obj.values())
+    elif isinstance(obj, list):
+        return " ".join(flatten_json(item) for item in obj)
+    return str(obj)
+
+
+def flatten_input(content):
+    if isinstance(content, dict):
+        return flatten_json(content)
+    return str(content)
+
+
+def try_parse_json(value: str):
+    try:
+        return json.loads(value)
+    except json.JSONDecodeError:
+        return value  # keep as plain text
 
 
 class UnstructuredDocumentService:
@@ -10,7 +32,7 @@ class UnstructuredDocumentService:
     """
 
     @transaction.atomic
-    def ingest_new_document(self, content: dict, text: str, doc_id: uuid.UUID = None) -> UnstructuredDocument:
+    def ingest_new_document(self, raw_input: str, doc_id: uuid.UUID = None) -> UnstructuredDocument:
         """
         Ingest a new versioned unstructured document.
 
@@ -22,6 +44,8 @@ class UnstructuredDocumentService:
         Returns:
             UnstructuredDocument: new document instance
         """
+        parsed = try_parse_json(raw_input)
+        flat_text = flatten_input(parsed)
         if doc_id is None:
             doc_id = uuid.uuid4()
             version = 1
@@ -37,8 +61,9 @@ class UnstructuredDocumentService:
 
         return UnstructuredDocument.objects.create(
             doc_id=doc_id,
-            content=content,
-            text=text,
+            content=parsed,
+            text=flat_text,
             version=version,
             is_latest=True
         )
+
