@@ -35,13 +35,12 @@ def unstructured_search_view(request):
     Performs keyword search on flattened unstructured text.
     """
     keyword = request.GET.get("q", "")
-    documents = []
 
+    documents = UnstructuredDocument.objects.filter(
+        is_latest=True,
+    )
     if keyword:
-        documents = UnstructuredDocument.objects.filter(
-            is_latest=True,
-            text__icontains=keyword
-        )
+        documents = documents.filter(text__icontains=keyword)
 
     return render(request, "query/unstructured_results.html", {
         "documents": documents,
