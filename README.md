@@ -32,10 +32,8 @@ The project is organized into modular Django apps, each responsible for a specif
 
 1. **Schema-Driven Ingestion**: Structured records are validated against user-defined schemas before being accepted.
 2. **Versioning**: Every update to a record creates a new version. Previous versions are retained.
-3. **Text Flattening**: Users provide flattened text when submitting unstructured documents. (Could be auto-flattened later.)
-4. **Search & Filters**: Queries are limited to basic filtering via URL params and basic full-text `icontains` matching.
-5. **Minimal Auth**: No authentication or user-level scoping implemented.
-6. **Flat storage**: Structured/unstructured records are not currently tied back to `Dataset`, but that could easily be added.
+3. **Search & Filters**: Queries are limited to basic filtering via URL params and basic full-text `icontains` matching.
+4. **Minimal Auth**: No authentication or user-level scoping implemented.
 
 ---
 
