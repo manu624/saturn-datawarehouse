@@ -13,7 +13,6 @@ This is a prototype for a scalable data warehouse system built using Django. It 
 The project is organized into modular Django apps, each responsible for a specific domain:
 
 - **schemas/**: Define and validate reusable structured schemas.
-- **datasets/**: Manage logical datasets linked to schemas.
 - **structured/**: Ingest and store versioned structured records.
 - **unstructured/**: Handle unstructured/semi-structured text data with versioning.
 - **dashboard/**: Central navigation hub for user actions.
@@ -66,14 +65,6 @@ python manage.py runserver
 
 Visit: `http://localhost:8000/`
 
-### 5. Admin Panel (Optional)
-
-```bash
-python manage.py createsuperuser
-```
-
-Then visit: `http://localhost:8000/admin/`
-
 ---
 
 ## 🧠 How Change History Is Tracked
@@ -111,7 +102,6 @@ Record ID: abc-123
 | **Auth & Access Control** | Add user accounts, dataset scoping                 |
 | **Query Builder**         | Build an advanced query UI layer                   |
 | **Data Lineage**          | Track source system, upload origin, tags           |
-| **Linking to Dataset**    | Associate all records with a `dataset_id`          |
 
 ---
 
@@ -120,6 +110,4 @@ Record ID: abc-123
 This system demonstrates a production-inspired backend architecture that supports flexible data ingestion, validation, history tracking, and querying. It's extensible, testable, and scalable to real-world use cases with minor enhancements.
 
 ---
-
-Built with ❤️ by [Your Name] for the Saturn assignment.
 
